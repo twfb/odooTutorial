@@ -1162,4 +1162,4 @@
 15. 查看模型, 菜单等
     - 点击设置
     - 点击技术
-16. 项目地址:
+16. 项目地址:https://github.com/dhgdhg/odoo_example

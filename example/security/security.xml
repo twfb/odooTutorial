@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="example.example_category" model="ir.module.category">
+        <field name="name">example.example_category</field>
+        <field name="sequence" eval="1"/>
+    </record>
+    <record id="example.example_groups_a" model="res.groups">
+        <field name="name">example.example_groups_a</field>
+        <field name="category_id" ref="example.example_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+    <record id="example.example_groups_b" model="res.groups">
+        <field name="name">example.example_groups_b</field>
+        <field name="category_id" ref="example.example_category"/>
+        <!--example.example_groups_a和example.example_groups_b, 只能选一个-->
+        <field name="implied_ids" eval="[(4, ref('example.example_groups_a'))]"/>
+
+        <!--example.example_groups_a和example.example_groups_b, 可以同时选-->
+        <!--<field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>-->
+    </record>
+</odoo>

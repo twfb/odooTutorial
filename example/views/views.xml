@@ -1,0 +1,104 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="example.list">
+            <field name="name">列表显示字段</field>
+            <field name="model">example.example</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="my_reference"/>
+                    <field name="my_related1"/>
+                    <field name="name_and_price"/>
+                    <field name="name"/>
+                    <field name="active"/>
+                    <field name="price"/>
+                    <field name="note"/>
+                    <field name="content"/>
+                    <field name="my_date"/>
+                    <field name="my_datetime"/>
+                    <field name="select"/>
+                    <field name="em1_mo"/>
+                    <field name="em1_om"/>
+                    <field name="em1_mm"/>
+                    <field name="my_related2"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--动作-->
+        <record id="example.root_menu_action_view" model="ir.actions.act_window">
+            <field name="type">ir.actions.act_window</field>
+            <field name="name">我会被显示出来</field>
+            <field name="res_model">example.example</field>
+        </record>
+
+        <!--自定义form表单-->
+        <record id="example.example_form_view" model="ir.ui.view">
+            <field name="model">example.example</field>
+            <field name="arch" type="xml">
+                <form>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                    <header>
+                        <!--三个按钮, 一个状态条-->
+                        <!--
+                        - button
+                            - name: 点击时执行的函数名
+                            - string: 按钮显示内容
+                            - states: 当状态值为多少时, 该按钮可见, 不设置则永远可见
+                        - <field name="state" widget="statusbar"/>
+                            -  statusbar_visible: 根据state值确定哪些状态在状态条上显示
+                        -->
+
+                        <button states="1" name="button2" string="当前状态值为1, 点击设置为2" class="oe_highlight" type="object"/>
+                        <button states="1" name="button3" string="当前状态值为1, 点击设置为3" class="oe_highlight" type="object"/>
+                        <button states="2" name="button3" string="当前状态值为2, 点击设置为3" class="oe_highlight" type="object"/>
+                        <button states="3" name="button1" string="当前状态值为3, 点击设置为1" class="oe_highlight" type="object"/>
+                        <button name="button4" string="老铁, 点个关注" class="oe_highlight" type="object"/>
+                        <button name="button5" string="emmm" class="oe_highlight" type="object"/>
+
+                        <field name="state" widget="statusbar" statusbar_visible="1,2,3"/>
+
+                    </header>
+                    <sheet>
+                        <group string="group1">
+                            <field name="name"/>
+                            <field name="active"/>
+                            <field name="price" readonly="1"/>
+                        </group>
+                        <group string="group2">
+                            <field name="my_datetime" attrs="{'invisible': [('active', '=', False)]}"/>
+                            <!--
+                            此处的required的优先级大于models中的required, 但是提交时会弹错
+                            -->
+                            <field name="my_date" required="1"/>
+                            <field name="select" required="0"/>
+                            <field name="name_and_price"/>
+                            <field name="my_related1"/>
+                            <field name="my_related2"/>
+                        </group>
+                        <group string="group3">
+                            <field name="em1_mo"/>
+                            <field name="em1_om"/>
+                            <field name="em1_mm"/>
+                            <field name="my_reference"/>
+
+                        </group>
+                        <notebook string="notebook1">
+                            <page string="page1">
+                                <field name="note"/>
+
+                            </page>
+                            <page string="page1">
+                                <field name="content"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <menuitem id="example.root_menu" name="example" action="example.root_menu_action_view" sequence="1"/>
+    </data>
+</odoo>

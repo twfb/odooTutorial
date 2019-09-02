@@ -1004,6 +1004,7 @@
 
     <summary>修改addons/example/views/views.xml文件</summary>
     <details>
+    
     ```xml
     ...
     <field name="arch" type="xml">

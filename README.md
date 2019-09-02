@@ -1035,7 +1035,7 @@
     - 重复步骤4
         - 此时会发现多了块区域显示备注啥的
 
-12. 重载系统函数
+12. 重载系统方法
     <summary>修改addons/example/models/models.py</summary>
     <details>
 
